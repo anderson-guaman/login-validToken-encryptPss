@@ -26,8 +26,14 @@ export  class JwtAdapter {
 
     static validateToken( token: string){
 
-        throw new Error('Not implement')
-        return;
+        return new Promise( (resolve) => {
+            jwt.verify( token, this.JWT_SEED, (error,decoded)=>{
+                
+                if(error) return resolve(null);
+
+                resolve(decoded);
+            })
+        })
     }
 
 }
